@@ -2,64 +2,71 @@ import React from "react";
 import falcon1 from "../../assets/falcon1.jpeg";
 import falconHeavy from "../../assets/falconHeavy.webp";
 import qq from "../../assets/qq.png";
+import { CardContainer, InfoContainer, ListItem } from "./styles.js";
 
-const ImageCard = () => {
+const ImageCard = ({
+  data: {
+    name,
+    success_rate_pct,
+    wikipedia,
+    active,
+    boosters,
+    company,
+    cost_per_launch,
+    country,
+    description,
+    diameter: { meters: diameter_meters },
+    first_flight,
+    height: { meters: height_meters },
+    mass: { kg: mass_kg },
+    payload_weights,
+  },
+}) => {
   return (
-    <div class="card mb-3" style={{    display: "flex",
-      flexDirection: "row"}}>
+    <CardContainer>
       <div>
-        <img
-          src={qq}
-          alt="Girl in a jacket"
-          width="300px"
-          height="auto"
-        />
+        <img src={qq} alt="Girl in a jacket" width="300px" height="auto" />
       </div>
-      <div>
-        <h3 class="card-header">Card header</h3>
+      <InfoContainer>
+        <h3 class="card-header">{name}</h3>
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-        </div>
-        {/* <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="d-block user-select-none"
-        width="100%"
-        height="200"
-        aria-label="Placeholder: Image cap"
-        focusable="false"
-        role="img"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 318 180"
-        style={{fontSize:"1.125rem",textAnchor:"middle"}}
-      >
-        <rect width="100%" height="100%" fill="#868e96"></rect>
-        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
-          Image cap
-        </text>
-      </svg> */}
-        <div class="card-body">
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <h5 class="card-title">{company}</h5>
+          <h6 class="card-subtitle text-muted">{country}</h6>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <ListItem className="list-group-item">
+            First Flight : {first_flight}
+          </ListItem>
+          <ListItem className="list-group-item">
+            Success Rate : %{success_rate_pct}
+          </ListItem>
+          <ListItem className="list-group-item">Mass : {mass_kg} kg</ListItem>
+          <ListItem className="list-group-item">
+            Height : {height_meters} m
+          </ListItem>
+          <ListItem className="list-group-item">
+            Diameter : {diameter_meters} m
+          </ListItem>
+          <ListItem className="list-group-item">
+            Cost Per Launch : {cost_per_launch}$
+          </ListItem>
+          <ListItem className="list-group-item">Boosters : {boosters}</ListItem>
         </ul>
         <div class="card-body">
-          <a href="#" class="card-link">
-            Card link
-          </a>
-          <a href="#" class="card-link">
-            Another link
+          <a
+            href={wikipedia}
+            target="_blank"
+            class="card-link"
+            rel="noreferrer"
+          >
+            Wiki Page
           </a>
         </div>
-        <div class="card-footer text-muted">2 days ago</div>
-      </div>
-    </div>
+        <div class="card-footer text-muted">
+          <a href={wikipedia}>More Info</a>
+        </div>
+      </InfoContainer>
+    </CardContainer>
   );
 };
 
